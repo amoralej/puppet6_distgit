@@ -1,0 +1,25 @@
+From adee1aa6df15d42b86109ba892ca002d7e8130bd Mon Sep 17 00:00:00 2001
+From: Alfredo Moralejo <amoralej@redhat.com>
+Date: Mon, 15 Jul 2019 18:14:36 +0200
+Subject: [PATCH] Adapt path for vendored modules according to Fedora standards
+
+---
+ lib/puppet/defaults.rb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/puppet/defaults.rb b/lib/puppet/defaults.rb
+index 54ed58b75d..7a7bf86299 100644
+--- a/lib/puppet/defaults.rb
++++ b/lib/puppet/defaults.rb
+@@ -54,7 +54,7 @@ module Puppet
+         nil
+       end
+     else
+-      '/opt/puppetlabs/puppet/vendor_modules'
++      '/usr/share/ruby/vendor_ruby/puppet/vendor_modules'
+     end
+   end
+ 
+-- 
+2.20.1
+

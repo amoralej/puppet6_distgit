@@ -1,0 +1,46 @@
+From f54a22b96e9e631991bad095a7b321273a2e6e3f Mon Sep 17 00:00:00 2001
+From: Gael Chamoulaud <gchamoul@redhat.com>
+Date: Wed, 29 Jul 2015 21:58:48 +0200
+Subject: [PATCH 2/5] Revert "(maint) Remove puppetmaster.service"
+
+This reverts commit c0e30daa53b6267c1c86b6e27c01b1c26cf49af5.
+---
+ ext/systemd/puppet.service       |  2 +-
+ ext/systemd/puppetmaster.service | 12 ++++++++++++
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+ create mode 100644 ext/systemd/puppetmaster.service
+
+diff --git a/ext/systemd/puppet.service b/ext/systemd/puppet.service
+index 7c16615..36769ac 100644
+--- a/ext/systemd/puppet.service
++++ b/ext/systemd/puppet.service
+@@ -11,7 +11,7 @@
+ [Unit]
+ Description=Puppet agent
+ Wants=basic.target
+-After=basic.target network.target
++After=basic.target network.target puppetmaster.service
+ 
+ [Service]
+ EnvironmentFile=-/etc/sysconfig/puppetagent
+diff --git a/ext/systemd/puppetmaster.service b/ext/systemd/puppetmaster.service
+new file mode 100644
+index 0000000..dbbd627
+--- /dev/null
++++ b/ext/systemd/puppetmaster.service
+@@ -0,0 +1,12 @@
++[Unit]
++Description=Puppet master
++Wants=basic.target
++After=basic.target network.target
++
++[Service]
++EnvironmentFile=-/etc/sysconfig/puppetmaster
++EnvironmentFile=-/etc/default/puppetmaster
++ExecStart=/usr/bin/puppet master $PUPPETMASTER_EXTRA_OPTS --no-daemonize
++
++[Install]
++WantedBy=multi-user.target
+-- 
+2.19.2
+
