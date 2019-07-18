@@ -25,7 +25,7 @@
 
 Name:           puppet
 Version:        6.6.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A network tool for managing many disparate systems
 License:        ASL 2.0
 URL:            http://puppetlabs.com
@@ -107,6 +107,7 @@ Requires(pre):  shadow-utils
 
 # Add requires for modules and library unbundled in 6.0.0
 Requires:       rubygem(semantic_puppet) >= 1.0.2
+Requires:       rubygem(puppet-resource_api) >= 1.8.4
 Requires:       puppet-augeas_core >= 1.0.4
 Requires:       puppet-cron_core >= 1.0.1
 Requires:       puppet-host_core >= 1.0.2
@@ -325,6 +326,9 @@ fi
 exit 0
 
 %changelog
+* Thu Jul 18 2019 Alfredo Moralejo <amoralej@redhat.com> - 6.6.0-2
+- Added rubygem(puppet-resource_api) as requirement.
+
 * Fri Jul 12 2019 Alfredo Moralejo <amoralej@redhat.com> - 6.6.0-1
 - Update to 6.6.0
 - Removed subpackage puppet-server.
